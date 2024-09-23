@@ -1,5 +1,6 @@
 package com.booking.project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
@@ -19,6 +20,7 @@ public class Room {
     private String localization;
     private Boolean television;
     private Boolean videoProjector;
+    @JsonIgnore
     @OneToOne(mappedBy = "room")
     private Booking booking;
 

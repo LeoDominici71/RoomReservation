@@ -61,16 +61,16 @@ public class ManageRoomService {
             Booking oldBooking = repository.getReferenceById(bookingId);
 
             Optional<Booking> reservation = repository.findByRoomId(booking.getRoom().getId());
-            Booking reservationPresent = reservation.orElseThrow(() -> new Exception(""));
-            if (reservationPresent.getDate().equals(booking.getDate())) {
-                throw new Exception("");
+            Booking reservationPresent = reservation.orElseThrow(() -> new Exception("booking not found"));
+            if (reservationPresent.getDate().equals(booking.getDate())  && reservationPresent.getInicialDateTime().equals(oldBooking.getInicialDateTime())) {
+                throw new Exception("Room already reserved for date");
             }
 
             return repository.save(Mapper.toBooking(booking, oldBooking));
 
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            throw new IllegalArgumentException(e.getMessage());
         }
 
     }

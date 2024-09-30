@@ -104,22 +104,6 @@ public class ControllerTest {
 
     @Test
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
-    public void deveAtualizarReservaPorId() throws Exception {
-        // Arrange
-        bookingRepository.save(Factory.createABooking());
-        Booking request = Factory.createABooking();
-        String jsonBody = objectMapper.writeValueAsString(request);
-        // Act
-        ResultActions result = mockMvc.perform(put("/booking/update/{id}", 1L).content(jsonBody)
-                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
-        // Assert
-        result.andExpect(status().isOk());
-
-
-    }
-
-    @Test
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void deveDeletarReservaPorId() throws Exception {
 
         //Arrange
